@@ -29,7 +29,9 @@ public class WordProcessor {
     }
 
     public void checkSpelling() {
-        this.spellChecker.check();
+        if (spellChecker != null) {
+            this.spellChecker.check();
+        }
     }
 
 }
