@@ -5,8 +5,10 @@ public class Client {
         ScoreRecord scoreRecord = new ScoreRecord();
 
         DataSheetView dataSheetView = new DataSheetView(scoreRecord, 3);
+        MaxMinView maxMinView = new MaxMinView(scoreRecord);
 
-        scoreRecord.setDataSheetView(dataSheetView);
+//        scoreRecord.setDataSheetView(dataSheetView);
+        scoreRecord.setMaxMinView(maxMinView);
 
         for (int i = 1; i <= 5; i++) {
             int score = i * 10;
