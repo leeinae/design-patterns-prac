@@ -69,3 +69,5 @@ out/
 modules.xml
 .idea/misc.xml
 *.ipr
+
+.DS_Store
