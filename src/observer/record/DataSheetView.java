@@ -2,7 +2,7 @@ package observer.record;
 
 import java.util.List;
 
-public class DataSheetView {
+public class DataSheetView implements Observer {
     private ScoreRecord scoreRecord;
     private int viewCount; //명시된 개수만큼만 점수 출력
 
@@ -11,8 +11,9 @@ public class DataSheetView {
         this.scoreRecord = scoreRecord;
     }
 
+    @Override
     public void update() {
-        List<Integer> record = scoreRecord.getScoreRecore();
+        List<Integer> record = scoreRecord.getScoreRecord();
         displayScores(record, viewCount);
     }
 

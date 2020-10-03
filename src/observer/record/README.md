@@ -8,9 +8,15 @@
 => 새로운 MaxMinView 클래스를 추가해야함 
 
 ## version 2
-###코드 수정된 부분
+### 코드 수정된 부분
 + MaxMinView 추가
 + 기존 DataSheetView 제거
 + 여러 개의 DataSheetView 저장을 위한 리스트 추가
 + 기존 Client 코드 변경
 -> 비효율..
+
+### 해결 방법
+성적 통보 방식이 변경되어도 ScoreRecord를 그대로 사용할 수 있어야 함!
+**Observer 패턴 이용**
+Observer interface -> update()
+Subject class -> ScoreRecord에서 여러 성적 출력 클래스 관리 

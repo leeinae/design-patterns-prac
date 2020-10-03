@@ -4,13 +4,13 @@ public class Client {
     public static void main(String[] args) {
         ScoreRecord scoreRecord = new ScoreRecord();
 
-        MaxMinView maxMinView = new MaxMinView(scoreRecord);
-        DataSheetView dataSheetView3 = new DataSheetView(scoreRecord, 3);
-        DataSheetView dataSheetView5 = new DataSheetView(scoreRecord, 5);
+        Observer maxMinView = new MaxMinView(scoreRecord);
+        Observer dataSheetView3 = new DataSheetView(scoreRecord, 3);
+        Observer dataSheetView5 = new DataSheetView(scoreRecord, 5);
 
-        scoreRecord.setMaxMinView(maxMinView);
-        scoreRecord.setDataSheetView(dataSheetView3);
-        scoreRecord.setDataSheetView(dataSheetView5);
+        scoreRecord.attach(maxMinView);
+        scoreRecord.attach(dataSheetView3);
+        scoreRecord.attach(dataSheetView5);
 
         for (int i = 1; i <= 5; i++) {
             int score = i * 10;
