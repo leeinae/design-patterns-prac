@@ -1,33 +1,36 @@
 package decorator.window;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SpeedometerDisplay extends DisplayDecorator {
     private Display displayComponent;
-    private int width, height;
     private LabelPanel labelPanel;
 
     SpeedometerDisplay(Display displayComponent, int width, int height) {
         super(displayComponent, width, height);
         this.displayComponent = displayComponent;
-        this.width = width;
-        this.height = height;
     }
 
     @Override
     public int getHeight() {
-        return displayComponent.getHeight() + this.height;
+        return displayComponent.getHeight() + super.getHeight();
     }
 
     @Override
     public JPanel create() {
         // 자체 패널 생성 -> 기존 컴포넌트 생성 -> 패널에 붙이고
         // label 생성해서 추가
-        JPanel jp = displayComponent.create();
-
+        JPanel jPanel = new JPanel();
         labelPanel = new LabelPanel();
-        jp.add(labelPanel.createPanel(this.width, this.height));
-        return jp;
+
+        jPanel.setLayout(new BoxLayout(jPanel, 1));
+        jPanel.setMinimumSize(new Dimension(getWidth(), getHeight()));
+        jPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
+
+        jPanel.add(displayComponent.create());
+        jPanel.add(labelPanel.createPanel(getWidth(), getHeight()));
+        return jPanel;
     }
 
     @Override

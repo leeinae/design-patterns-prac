@@ -1,6 +1,7 @@
 package decorator.window;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class WeatherDisplay extends DisplayDecorator {
     private Display displayComponent;
@@ -16,22 +17,27 @@ public class WeatherDisplay extends DisplayDecorator {
 
     @Override
     public int getHeight() {
-        return super.getHeight() + this.height;
+        return displayComponent.getHeight() + super.getHeight();
     }
 
     @Override
     public JPanel create() {
-        JPanel jp = displayComponent.create();
-
+        JPanel jPanel = new JPanel();
         labelPanel = new LabelPanel();
-        jp.add(labelPanel.createPanel(this.width, this.height));
-        return jp;
+
+        jPanel.setLayout(new BoxLayout(jPanel, 1));
+        jPanel.setMinimumSize(new Dimension(getWidth(), getHeight()));
+        jPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
+
+        jPanel.add(displayComponent.create());
+        jPanel.add(labelPanel.createPanel(getWidth(), getHeight()));
+        return jPanel;
     }
 
     @Override
     public void show() {
-        labelPanel.updateText("[Weather] 온도: 20도, 습도: 60");
         displayComponent.show();
+        labelPanel.updateText("[Weather] 온도: 20도, 습도: 60");
         System.out.println("[Weather] 온도: 20도, 습도: 60");
     }
 }
